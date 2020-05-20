@@ -1,1 +1,110 @@
-<h1>Cataline Baert</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Story in Data</title>
+  <!-- Custom style -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito&family=Squada+One&display=swap" rel="stylesheet">
+  <!-- TIMELINES -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['timeline'] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var container = document.getElementById('timeline');
+      var chart = new google.visualization.Timeline(container);
+      var dataTable = new google.visualization.DataTable();
+
+      dataTable.addColumn({ type: 'string', id: 'Theme' });
+      dataTable.addColumn({ type: 'string', id: 'Subject' });
+      dataTable.addColumn({ type: 'date', id: 'Start' });
+      dataTable.addColumn({ type: 'date', id: 'End' });
+      dataTable.addRows([
+        ['Education', 'Mathematics', new Date(2003, 9, 1), new Date(2008, 6, 30)],
+        ['Education', 'Environmental Science', new Date(2008, 9, 1), new Date(2012, 8, 31)],
+        ['Education', 'Computer Science', new Date(2017, 9, 1), new Date(2018, 6, 30)],
+        ['Education', 'Le Wagon', new Date(2019, 7, 1), new Date(2019, 8, 30)],
+        ['Work', 'Mathematics Teacher', new Date(2010, 8, 30), new Date(2016, 6, 30)],
+        ['Work', 'Teaching Assistant/Teacher', new Date(2019, 10, 1), new Date(2020, 5, 20)]]);
+
+        var options = {
+          timeline: { showRowLabels: false }
+          // width: '1224px';
+        };
+
+        chart.draw(dataTable, options);
+      }
+      // ['Web Development', new Date(2018, 1, 1), new Date(2019, 12, 30)]
+  </script>
+  <!-- GEOCHARTS -->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <script type="text/javascript">
+    google.charts.load('current', {
+      'packages': ['geochart'],
+      // Note: you will need to get a mapsApiKey for your project.
+      // See: https://developers.google.com/chart/interactive/docs/basic_load_libs#load-settings
+      'mapsApiKey': 'AIzaSyCBR_h3X7HvjIL7pv4UKifLW7wfz1UoJ6g'
+    });
+    google.charts.setOnLoadCallback(drawRegionsMap);
+
+    function drawRegionsMap() {
+      var data = google.visualization.arrayToDataTable([
+        ['Country', 'Lived there until'],
+        ['Mexico', 1983],
+        ['Luxembourg', 1990, ],
+        ['Switzerland', 2020]
+      ]);
+
+      var options = {
+        colorAxis: { colors: ['green', 'blue' , 'red'] },
+        width: '960px'
+      };
+
+      var chart = new google.visualization.GeoChart(document.getElementById('map'));
+
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+
+<body>
+  <div class="container">
+    <!-- GEOCHARTS -->
+    <div id="introduction" class="section">
+      <h1>Hello, I'm Cataline!</h1>
+      <p>I was born in Mexico...</p>
+      <div id="map"></div>
+      <!-- <div id="regions_div" style="width: 900px; height: 500px;"></div> -->
+      <p>... but I grew up in Luxembourg and at the age of 7 I moved to Switzerland where I am still living!</p>
+    </div>
+
+    <!-- TIMELINES -->
+    <div id="background" class="section">
+      <h2>Education & Work</h2>
+      <p>My first passion has always been mathematics! I spent couple of years trying to pass it on to students...</p>
+      <div id="timeline"></div>
+      <p>... until I discovered coding and web development! Le Wagon helped me acquire the skills and reasoning.</p>
+      <p>Now I'm looking for a junior full stack developer job and eager to prove what I can do!</p>
+    </div>
+  </div>
+
+  <!-- Javascripts -->
+  <script>
+    var map;
+    function initMap() {
+      map = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: 35.339346, lng: - 41.665313 },
+        // center: { lat: -34.397, lng: 150.644 },
+        zoom: 12//8
+      });
+    }
+  </script>
+  <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCBR_h3X7HvjIL7pv4UKifLW7wfz1UoJ6g&callback=initMap"
+    type="text/javascript"></script>
+</body>
+
+</html>
